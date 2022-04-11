@@ -30,7 +30,7 @@ const cleanName = (string) => {
 
 const getElements = (path) => {
     return fs
-        .readFileSync(path)
+        .readdirSync(path)
         .filter((item) => !/(^|\/)\.[^\/\.]/g.test(item))
         .map((i, index) => {
             return {
@@ -46,28 +46,28 @@ const layers = [{
     id: 1,
     name: 'Gunung',
     location: `${dir}/Gunung/`,
-    elements: getElements(`${dir}/Gunung`),
+    elements: getElements(`${dir}/Gunung/`),
     position: { x: 0, y: 0 },
     size: { width, height }
 }, {
     id: 1,
     name: 'Jalan',
     location: `${dir}/Jalan/`,
-    elements: getElements(`${dir}/Jalan`),
+    elements: getElements(`${dir}/Jalan/`),
     position: { x: 0, y: 0 },
     size: { width, height }
 }, {
     id: 1,
     name: 'Matahari',
     location: `${dir}/Matahari/`,
-    elements: getElements(`${dir}/Matahari`),
+    elements: getElements(`${dir}/Matahari/`),
     position: { x: 0, y: 0 },
     size: { width, height }
 }, {
     id: 1,
     name: 'Sawah',
     location: `${dir}/Sawah/`,
-    elements: getElements(`${dir}/Sawah`),
+    elements: getElements(`${dir}/Sawah/`),
     position: { x: 0, y: 0 },
     size: { width, height }
 }];
