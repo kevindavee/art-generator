@@ -45,6 +45,7 @@ const drawLayer = async (_layer, _edition) => {
     addAttribute(element, _layer);
     const image = await loadImage(`${_layer.location}${element.fileName}`);
     ctx.drawImage(image, _layer.position.x, _layer.position.y, _layer.size.width, _layer.size.height);
+    saveLayer(canvas, _edition);
 };
 
 for (let i = 0; i < edition; i++) {
@@ -52,6 +53,5 @@ for (let i = 0; i < edition; i++) {
         drawLayer(layer, i);
     });
     const metadata = computeMetadata(i);
-    saveLayer(canvas, i);
     fs.writeFileSync(`./output/metadata/${i}.json`, JSON.stringify(metadata, null, 2));
 }
