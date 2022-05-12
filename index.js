@@ -11,7 +11,7 @@ const saveLayer = async (_canvas, _edition) => {
 
 const drawLayer = async (_layer, _edition) => {
     let element = _layer.elements[Math.floor(Math.random() * _layer.element.length)];
-    const image = loadImage(`${_layer.location}${element.fileName}`);
+    const image = await loadImage(`${_layer.location}${element.fileName}`);
     ctx.drawImage(image, _layer.position.x, _layer.position.y, _layer.size.width, _layer.size.height);
     saveLayer(canvas);
 };
