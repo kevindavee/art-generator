@@ -8,7 +8,7 @@ const saveLayer = async (_canvas) => {
 };
 
 const drawLayer = async () => {
-    const image = loadImage('./Gunung-01.png');
+    const image = await loadImage('./Gunung-01.png');
     ctx.drawImage(image, 0, 0, 1000, 1000);
     saveLayer(canvas);
 };
