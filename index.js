@@ -21,6 +21,8 @@ const computeMetadata = (_edition) => {
         decodedHash: decodedHash,
     };
     hash = [];
+    attributes = [];
+    decodedHash = [];
     return tempMetadata;
 };
 
@@ -36,8 +38,8 @@ const addAttribute = (_element, _layer) => {
     decodedHash.push({ [_layer.id]: _element.id });
 }
 
-const saveLayer = async (_canvas) => {
-    fs.writeFileSync("./new-gunung-01.png", _canvas.toBuffer("image/png"));
+const saveLayer = async (_canvas, _edition) => {
+    fs.writeFileSync(`./output/${_edition}.png`, _canvas.toBuffer("image/png"));
 };
 
 const drawLayer = async (_layer, _edition) => {
@@ -45,13 +47,16 @@ const drawLayer = async (_layer, _edition) => {
     addAttribute(element, _layer);
     const image = await loadImage(`${_layer.location}${element.fileName}`);
     ctx.drawImage(image, _layer.position.x, _layer.position.y, _layer.size.width, _layer.size.height);
-    saveLayer(canvas, _edition);
+    await saveLayer(canvas, _edition);
 };
 
-for (let i = 0; i < edition; i++) {
-    layers.forEach(layer => {
-        drawLayer(layer, i);
-    });
-    const metadata = computeMetadata(i);
-    fs.writeFileSync(`./output/metadata/${i}.json`, JSON.stringify(metadata, null, 2));
-}
+(async () => {
+    for (let i = 0; i < edition; i++) {
+        for (const layer of layers) {
+            await drawLayer(layer, i);
+        }
+        const metadata = computeMetadata(i);
+        fs.writeFileSync(`./output/metadata/${i}.json`, JSON.stringify(metadata, null, 2));
+        ctx.clearRect(0, 0, 1000, 1000);
+    }
+})();

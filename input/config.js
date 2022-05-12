@@ -51,13 +51,6 @@ const layers = [{
     size: { width, height }
 }, {
     id: 1,
-    name: 'Jalan',
-    location: `${dir}/Jalan/`,
-    elements: getElements(`${dir}/Jalan/`),
-    position: { x: 0, y: 0 },
-    size: { width, height }
-}, {
-    id: 1,
     name: 'Matahari',
     location: `${dir}/Matahari/`,
     elements: getElements(`${dir}/Matahari/`),
@@ -68,6 +61,13 @@ const layers = [{
     name: 'Sawah',
     location: `${dir}/Sawah/`,
     elements: getElements(`${dir}/Sawah/`),
+    position: { x: 0, y: 0 },
+    size: { width, height }
+}, {
+    id: 1,
+    name: 'Jalan',
+    location: `${dir}/Jalan/`,
+    elements: getElements(`${dir}/Jalan/`),
     position: { x: 0, y: 0 },
     size: { width, height }
 }];
